@@ -57,26 +57,26 @@ public class ShapeFileReader
     }
 
     //testing
-    public static void main(String[] args)
-    {
-        Shape[] shapes = readShapesFromFile("assignment1StartingCode/res/shapes1.txt");
-
-        if (shapes == null) return;
-
-        	System.out.println("Loaded " + shapes.length + " shapes:\n");
-
-        for (Shape s : shapes)
-        {
-            if (s != null)
-            {
-            	System.out.println(
-            		    "Shape: " + s.getClass().getSimpleName() +
-            		    " | Height: " + s.getHeight() +
-            		    " | Base Area: " + s.calcBaseArea() +
-            		    " | Volume: " + s.calcVolume()
-            		);
-
-            }
-        }
-    }
+//    public static void main(String[] args)
+//    {
+//        Shape[] shapes = readShapesFromFile("assignment1StartingCode/res/shapes1.txt");
+//
+//        if (shapes == null) return;
+//
+//        	System.out.println("Loaded " + shapes.length + " shapes:\n");
+//
+//        for (Shape s : shapes)
+//        {
+//            if (s != null)
+//            {
+//            	System.out.println(
+//            		    "Shape: " + s.getClass().getSimpleName() +
+//            		    " | Height: " + s.getHeight() +
+//            		    " | Base Area: " + s.calcBaseArea() +
+//            		    " | Volume: " + s.calcVolume()
+//            		);
+//
+//            }
+//        }
+//    }
 }

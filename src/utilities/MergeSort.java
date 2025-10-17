@@ -18,7 +18,6 @@ public class MergeSort {
 
             mergeSort(arr, left, mid, cmp);
             mergeSort(arr, mid + 1, right, cmp);
-
             merge(arr, left, mid, right, cmp);
         }
     }
