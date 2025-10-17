@@ -2,10 +2,11 @@ package utilities;
 
 import java.util.Comparator;
 
+
 public class SelectionSort
 {
 	//Selection sorting by height****
-	public static <T extends Comparable<T>> void selectionSort(T[] array) 
+	public static <T extends Comparable<T>> void sort(T[] array)  
 	{
 		int n = array.length;
 		
@@ -26,7 +27,7 @@ public class SelectionSort
 	}
 	
 	//Selection sorting by Volume and Base area****
-	public static <T> void selectionSort(T[] array, Comparator<T> comp)
+	public static <T> void sort(T[] array, Comparator<T> comp)
     {
         int n = array.length;
         
