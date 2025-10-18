@@ -14,6 +14,6 @@ public class TriangularPrism extends Prism
 		double side = getSide();
 		return (Math.pow(side, 2) * Math.sqrt(3)) /4;
 	}
-
+	
 }
 

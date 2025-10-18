@@ -39,7 +39,7 @@ public class MergeSort {
         int i = 0, j = 0, k = left;
 
         while (i < size1 && j < size2) {
-            if (cmp.compare(firstHalf[i], secondHalf[j]) >= 0) {
+            if (cmp.compare(firstHalf[i], secondHalf[j]) <= 0) {
                 arr[k] = firstHalf[i];
                 i++;
             } else {

@@ -36,7 +36,7 @@ public class SelectionSort
             int minIndex = i;
             for (int j = i + 1; j < n; j++)
             {
-                if (comp.compare(array[j], array[minIndex]) > 0) 
+                if (comp.compare(array[j], array[minIndex]) < 0) 
                     minIndex = j;
             }
 
