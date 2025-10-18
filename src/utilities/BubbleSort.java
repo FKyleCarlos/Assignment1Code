@@ -10,7 +10,7 @@ public class BubbleSort {
         for (int n = arr.length; n > 1; n--) {
             swapped = false;
             for (int i = 1; i < n; i++) {
-                if (cmp.compare(arr[i - 1], arr[i]) < 0) {
+                if (cmp.compare(arr[i - 1], arr[i]) > 0) {
                     T temp = arr[i - 1];
                     arr[i - 1] = arr[i];
                     arr[i] = temp;

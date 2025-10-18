@@ -13,5 +13,5 @@ public class SquarePrism extends Prism
 	{
 		return Math.pow(getSide(), 2);
 	}
-	
+
 }

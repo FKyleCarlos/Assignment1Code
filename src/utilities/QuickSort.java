@@ -23,7 +23,7 @@ public class QuickSort {
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (cmp.compare(arr[j], pivot) >= 0) {
+            if (cmp.compare(arr[j], pivot) <= 0) {
                 i++;
                 Shape temp = arr[i];
                 arr[i] = arr[j];

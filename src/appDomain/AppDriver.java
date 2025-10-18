@@ -1,8 +1,7 @@
 package appDomain;
 
 import java.util.Comparator;
-import shapes.Shape;
-import shapes.ShapeFileReader;
+import shapes.*;
 import utilities.*;
 
 /**
@@ -22,27 +21,26 @@ public class AppDriver
 	 */
 	public static void main( String[] args )
 	{
-		// TODO Auto-generated method stub
 
-		// refer to demo00 BasicFileIO.java for a simple example on how to
-		// read data from a text file
-
-		// refer to demo01 Test.java for an example on how to parse command
-		// line arguments and benchmarking tests
-
-		// refer to demo02 Student.java for comparable implementation, and
-		// NameCompare.java or GradeCompare for comparator implementations
-
-		// refer to demo02 KittySort.java on how to use a custom sorting
-		// algorithm on a list of comparables to sort using either the
-		// natural order (comparable) or other orders (comparators)
+		//Testing value
+//		String fileName = "res/shapes1.txt";
 		
-		// Example arguments
-		String fileName = "res/shapes3.txt";
+		String fileName = new String();
 
-		char compareType = 'v'; // v = volume, h = height, a = base area
-		char sortType = 'h';    // m = merge, q = quick
+		char compareType = 'a'; // v = volume, h = height, a = base area
+		char sortType = 'h';    // m = merge, q = quick, etc
 
+		for (String arg : args) {
+            arg = arg.trim();
+            if (arg.startsWith("-f") || arg.startsWith("-F")) {
+                fileName = arg.substring(2);
+            } else if (arg.startsWith("-t") || arg.startsWith("-T")) {
+                compareType = Character.toLowerCase(arg.charAt(2));
+            } else if (arg.startsWith("-s") || arg.startsWith("-S")) {
+                sortType = Character.toLowerCase(arg.charAt(2));
+            }
+        }
+		
 		// Load shapes from file
 		Shape[] shapes = ShapeFileReader.readShapesFromFile(fileName);
 
@@ -51,17 +49,19 @@ public class AppDriver
 			return;
 		}
 
+		ShapeBaseAreaComparator areaCmp = new ShapeBaseAreaComparator();
+		ShapeVolumeComparator volumeCmp = new ShapeVolumeComparator();
 		// Choose comparator based on compareType
 		Comparator<Shape> cmp;
 		switch (compareType) {
 			case 'h':
-				cmp = (s1, s2) -> Double.compare(s1.getHeight(), s2.getHeight());
+				cmp = (s1, s2) -> s1.compareTo(s2);
 				break;
 			case 'a':
-				cmp = (s1, s2) -> Double.compare(s1.calcBaseArea(), s2.calcBaseArea());
+				cmp = (s1, s2) -> areaCmp.compare(s1, s2);
 				break;
 			case 'v':
-				cmp = (s1, s2) -> Double.compare(s1.calcVolume(), s2.calcVolume());
+				cmp = (s1, s2) -> volumeCmp.compare(s1, s2);
 				break;
 			default:
 				System.out.println("Invalid compare type. Use h, a, or v.");
@@ -89,7 +89,7 @@ public class AppDriver
 		        System.out.println("\nSorted using Quick Sort");
 		        break;
 		    case 's':
-		        utilities.QuickSort.sort(shapes, cmp);
+		        utilities.SelectionSort.selectionSort(shapes, cmp);
 		        System.out.println("\nSorted using Selection Sort");
 		        break;
 		    case 'h':
@@ -102,13 +102,57 @@ public class AppDriver
 		}
 
 		long end = System.currentTimeMillis();
-		System.out.println("Time taken: " + (end - start) + " ms");
-
-		System.out.println("\nFirst Shape: " + shapes[0].getClass().getSimpleName() +
-				" | Area: " + shapes[0].calcVolume());
-
-		System.out.println("Last Shape: " + shapes[shapes.length - 1].getClass().getSimpleName() +
-				" | Area: " + shapes[shapes.length - 1].calcVolume());
+		switch (compareType) 
+		{
+			case 'h':
+				System.out.println("Time taken: " + (end - start) + " ms");
+	
+				System.out.println("\nFirst Shape: " + shapes[0].getClass().getSimpleName() +
+						" | Height: " + shapes[0].getHeight());
+				
+				for(int i = 1000; i < shapes.length - 1; i += 1000)
+				{
+					System.out.println("Shape: " + shapes[i].getClass().getSimpleName() +
+							" | Height: " + shapes[i].getHeight());
+				}
+	
+				System.out.println("Last Shape: " + shapes[shapes.length - 1].getClass().getSimpleName() +
+						" | Height: " + shapes[shapes.length - 1].getHeight());
+				break;
+			case 'a':
+				System.out.println("Time taken: " + (end - start) + " ms");
+	
+				System.out.println("\nFirst Shape: " + shapes[0].getClass().getSimpleName() +
+						" | Area: " + shapes[0].calcBaseArea());
+				
+				for(int i = 1000; i < shapes.length - 1; i += 1000)
+				{
+					System.out.println("Shape: " + shapes[i].getClass().getSimpleName() +
+							" | Area: " + shapes[i].calcBaseArea());
+				}
+	
+				System.out.println("Last Shape: " + shapes[shapes.length - 1].getClass().getSimpleName() +
+						" | Area: " + shapes[shapes.length - 1].calcBaseArea());
+				break;
+			case 'v':
+				System.out.println("Time taken: " + (end - start) + " ms");
+	
+				System.out.println("\nFirst Shape: " + shapes[0].getClass().getSimpleName() +
+						" | Volume: " + shapes[0].calcVolume());
+				
+				for(int i = 1000; i < shapes.length - 1; i += 1000)
+				{
+					System.out.println(i + "-th element: " + shapes[i].getClass().getSimpleName() +
+							" | Volume: " + shapes[i].calcVolume());
+				}
+	
+				System.out.println("Last Shape: " + shapes[shapes.length - 1].getClass().getSimpleName() +
+						" | Volume: " + shapes[shapes.length - 1].calcVolume());
+				break;
+			default:
+				System.out.println("Invalid compare type. Use h, a, or v.");
+				return;
+		}
 
 	}
 

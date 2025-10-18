@@ -15,6 +15,4 @@ public class PentagonalPrism extends Prism
 		return (5 * Math.pow(side, 2)) / (4 * Math.tan(Math.toRadians(54)));
 	}
 	
-	
-
 }

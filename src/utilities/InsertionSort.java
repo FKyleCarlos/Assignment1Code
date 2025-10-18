@@ -10,7 +10,7 @@ public class InsertionSort {
             int j = i - 1;
 
             // Sort in descending order
-            while (j >= 0 && cmp.compare(arr[j], key) < 0) {
+            while (j >= 0 && cmp.compare(arr[j], key) > 0) {
                 arr[j + 1] = arr[j];
                 j--;
             }

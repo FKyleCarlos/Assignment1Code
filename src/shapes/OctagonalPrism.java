@@ -15,9 +15,4 @@ public class OctagonalPrism extends Prism
 		return 2 * (1 + Math.sqrt(2)) * Math.pow(side,  2);
 	}
 	
-	
-	
-	
-	
-	
 }
